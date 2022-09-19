@@ -1,0 +1,67 @@
+---
+
+title: Twinkle Twinkle Little Star
+
+
+bars:
+  -
+    - C1
+    - C1
+    - G5
+    - G5
+  -
+    - A6
+    - A6
+    - G5
+    - rest
+  -
+    - F4
+    - [F4, G5, A6]
+    - E3
+    - E3
+  -
+    - D2
+    - D2
+    - C1
+    - rest
+  -
+    - G5
+    - G5
+    - F4
+    - F4
+  -
+    - E3
+    - E3
+    - D2
+    - rest
+  -
+    - G5
+    - G5
+    - F4
+    - F4
+  -
+    - E3
+    - E3
+    - D2
+    - rest
+  -
+    - C1
+    - C1
+    - G5
+    - G5
+  -
+    - A6
+    - A6
+    - G5
+    - rest
+  -
+    - F4
+    - F4
+    - E3
+    - E3
+  -
+    - D2
+    - D2
+    - C1
+    - C8
+
