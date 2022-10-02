@@ -3,6 +3,7 @@ import yaml
 with open("demo.yaml", 'r') as stream:
     music = yaml.safe_load(stream)
 
+# border-spacing:0 50px;
 music0 = {
 
     "title": "Twinkle Twinkle Little Star",
@@ -33,162 +34,216 @@ h2 {
 
 table {
   border-collapse: separate;  
-  border-spacing:0 50px;
+  border: none;
+  
   align: center;
   margin-left: auto;
   margin-right: auto;
+  width:1024px;
+  grid-row-gap: 20px;
+  row-gap: 20px;
 }
 
+tr {
+  grid-row-gap: 20px;
+  row-gap: 20px;
+}
 td {
-  background-image: linear-gradient(.25turn, lightgray 10%, white);
-  border-bottom: solid 1px black;
-  border-top: solid 1px black;
+  background-image: linear-gradient(45deg, lightblue, white);
+  
 
-  padding: 10px;
-  font-size: 30px; 
+  padding: none;
+  font-size: 18px; 
+  
 }
 
 td:nth-child(1) {
   border-left: solid 2px black;
+  border-bottom: solid 2px black;
+  border-top: solid 2px black;
+}
+td:nth-child(2) {  
+  border-bottom: solid 2px black;
+  border-top: solid 2px black;
+}
+
+td:nth-child(3) {  
+  border-bottom: solid 2px black;
+  border-top: solid 2px black;
+}
+
+td:nth-child(4) {  
+  border-bottom: solid 2px black;
+  border-top: solid 2px black;
+  border-right: solid 2px black;
 }
 
 td:nth-child(5) {
   border-left: solid 2px black;
+  border-bottom: solid 2px black;
+  border-top: solid 2px black;
+}
+td:nth-child(6) {  
+  border-bottom: solid 2px black;
+  border-top: solid 2px black;
 }
 
-td:nth-child(8) {
+td:nth-child(7) {  
+  border-bottom: solid 2px black;
+  border-top: solid 2px black;
+}
+
+td:nth-child(8) {  
+  border-bottom: solid 2px black;
+  border-top: solid 2px black;
   border-right: solid 2px black;
-  
-.shapes-wrapper { 
-  position:absolute;
-  top: 50px;
-  left: 50px;
-  width: 200px;
+}
+
+.container{
+  width: 11%;
   height: 200px;
-  background-color: yellow;
-}
+  position: relative;
+  margin: none;
+  padding:none;
+  
+  
+  
   
 }
+
 .note_C1{
   background-color:#b71c1c;
-  display:block;
-  height:10px;
-  width:10px;
-  border-radius:50%;
-  border:3px solid #000;
-  margin:auto;
-  color:#000;
-  line-height:50px;
-  text-align:center
-  
+  border:1px solid #000;
+  border-radius:45%;    
+  color:#ffffff;
+  display: inline-block;  
+  height:10%;  
+  margin-left: 10%;
+  padding-bottom: 1%;
+  position: absolute;  
+  text-align: center;
+  top: 85%;
+  width:80%;      
 }
 
 .note_D2{
-  background-color:#dc7633;
-  display:block;
-  height:10px;
-  width:10px;
-  border-radius:50%;
-  border:3px solid #000;
-  margin:auto;
-  line-height:50px;
-  text-align:center
-  
+  background-color:#b5490b;
+  border:1px solid #000;
+  border-radius:45%;
+  color:#ffffff;
+  display: inline-block;
+  height:10%;  
+  margin-left: 8%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 75%;
+  width:80%;
 }
 
 .note_E3{
-  background-color:#f1c40f;
-  display:block;
-  height:10px;
-  width:10px;
-  border-radius:50%;
-  border:3px solid #000;
-  margin:auto;
-  color:#000;
-  line-height:50px;
-  text-align:center  
+  background-color: #b5b50b; 
+  border:1px solid #000;
+  border-radius:45%;  
+  color:#ffffff;
+  display: inline-block;
+  height:10%;  
+  margin-left: 10%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 65%;
+  width:80%;    
 }
 
-
 .note_F4{
-  background-color:#558b2f;
-  display:block;
-  height:10px;
-  width:10px;
-  border-radius:50%;
-  border:3px solid #000;
-  margin:auto;
-  color:#000;
-  line-height:50px;
-  text-align:center  
+  background-color: #12d10f;
+  border:1px solid #000;
+  border-radius:45%;
+  color:#ffffff;
+  display: inline-block;
+  height:10%;
+  margin-left: 10%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 55%;  
+  width:80%;
 }
 
 .note_G5{
-  background-color:#1abc9c;
-  display:block;
-  height:10px;
-  width:10px;
-  border-radius:50%;
-  border:3px solid #000;
-  margin:auto;
-  color:#0;
-  line-height:50px;
-  text-align:center
-  
+  background-color:#0bb5af;
+  border:1px solid #000;
+  border-radius:45%;
+  color:#ffffff;
+  display: inline-block;
+  height:10%;
+  margin-left: 10%;
+  padding-bottom: 1%;
+  text-align: center;
+  top: 45%;   
+  width:80%;
+  position: absolute;
 }
+
 .note_A6{
-  background-color:#1f618d ;
-  display:block;
-  height:10px;
-  width:10px;
-  border-radius:50%;
-  border:3px solid #000;
-  margin:auto;
-  color:#0;
-  line-height:50px;
-  text-align:center
-  
+  background-color: #0b30b5;
+  border:1px solid #000;
+  border-radius:45%;
+  color:#ffffff;
+  display: inline-block;
+  height:10%;
+  margin-left: 10%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 35%;       
+  width:80%;
 }
 
 .note_B7{
-  background-color:#6c3483 ;
-  display:block;
-  height:10px;
-  width:10px;
-  border-radius:50%;
-  border:3px solid #000;
-  margin:auto;
-  color:#0;
-  line-height:50px;
-  text-align:center
- 
+  background-color:#b50bb2;  
+  border:1px solid #000;    
+  border-radius:45%;
+  color:#ffffff;  
+  display: inline-block;
+  height:10%;
+  margin-left: 10%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 25%;   
+  width:80%;         
  }
   
 .note_C8{
   background-color: #b71c1c;
-  display:block;
-  height:10px;
-  width:10px;
-  border-radius:50%;
-  border:3px solid #000;
-  margin:auto;
-  color:#0;
-  line-height:50px;
-  text-align:center
+  border:1px solid #000;  
+  border-radius:40%;
+  color:#ffffff;    
+  display: inline-block;  
+  margin-left: 10%;
+  height:10%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;  
+  top: 15%;   
+  width:80%;    
   
 }
+
 .note_rest{
   background-color:lightgray;
+  border:1px solid lightgray;
+  border-radius:45%;
+  color:gray;    
   display:block;
-  height:50px;
-  width:50px;
-  border-radius:50%;
-  border:3px solid lightgray;
-  margin:auto;
-  color:gray;
-  line-height:50px;
-  text-align:center
-  
+  height:10%;      
+  margin-left: 10%;
+  padding-bottom: 1%;
+  position: absolute;    
+  text-align: center;
+  width:80%;
 }
 
 
@@ -207,7 +262,7 @@ def print_title(title):
 
 
 def cell_header():
-    print("<td>")
+    print("<td class=\"container\">")
 
 
 def cell_footer():
@@ -215,7 +270,7 @@ def cell_footer():
 
 
 def table_header():
-    print("<table border=1>")
+    print("<table>")
 
 
 def table_footer():
