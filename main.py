@@ -1,4 +1,7 @@
+import string
 import yaml
+
+lc_stripper = str.maketrans('', '', string.ascii_lowercase)
 
 with open("demo.yaml", 'r') as stream:
     music = yaml.safe_load(stream)
@@ -54,6 +57,7 @@ td {
 
   padding: none;
   font-size: 18px; 
+  margin: none;
   
 }
 
@@ -114,7 +118,7 @@ td:nth-child(8) {
 .note_C1{
   background-color:#b71c1c;
   border:1px solid #000;
-  border-radius:45%;    
+  border-radius:10%;    
   color:#ffffff;
   display: inline-block;  
   height:10%;  
@@ -123,13 +127,45 @@ td:nth-child(8) {
   position: absolute;  
   text-align: center;
   top: 85%;
-  width:80%;      
+  width:80%;
 }
 
-.note_D2{
-  background-color:#b5490b;
+.note_C1a{
+  background-color:#b71c1c;
   border:1px solid #000;
-  border-radius:45%;
+  border-radius:10%;    
+  color:#ffffff;
+  display: inline-block;  
+  height:10%;  
+  margin-left: 10%;
+  padding-bottom: 1%;
+  position: absolute;  
+  text-align: center;
+  top: 85%;
+  width:35%;      
+}
+
+.note_C1b{
+  background-color:#b71c1c;
+  border:1px solid #000;
+  border-radius:10%;    
+  color:#ffffff;
+  display: inline-block;  
+  height:10%;  
+  margin-left: 55%;
+  padding-bottom: 1%;
+  position: absolute;  
+  text-align: center;
+  top: 85%;
+  width:35%;      
+}
+
+
+.note_D2{
+  background-color:#ff8b38;
+  background-color:#e39402;
+  border:1px solid #000;
+  border-radius:10%;
   color:#ffffff;
   display: inline-block;
   height:10%;  
@@ -141,10 +177,41 @@ td:nth-child(8) {
   width:80%;
 }
 
-.note_E3{
-  background-color: #b5b50b; 
+.note_D2a{
+  background-color:#ff8b38;
+  background-color:#e39402;
   border:1px solid #000;
-  border-radius:45%;  
+  border-radius:10%;
+  color:#ffffff;
+  display: inline-block;
+  height:10%;  
+  margin-left: 8%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 75%;
+  width:35%;
+}
+.note_D2b{
+  background-color:#ff8b38;
+  background-color:#e39402;
+  border:1px solid #000;
+  border-radius:10%;
+  color:#ffffff;
+  display: inline-block;
+  height:10%;  
+  margin-left: 55%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 75%;
+  width:35%;
+}
+.note_E3{
+  background-color: #e3d002;
+  background-color: #cccc00;
+  border:1px solid #000;
+  border-radius:10%;  
   color:#ffffff;
   display: inline-block;
   height:10%;  
@@ -156,10 +223,40 @@ td:nth-child(8) {
   width:80%;    
 }
 
+.note_E3a{
+  background-color: #e3d002;
+  background-color: #cccc00;
+  border:1px solid #000;
+  border-radius:10%;  
+  color:#ffffff;
+  display: inline-block;
+  height:10%;  
+  margin-left: 10%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 65%;
+  width:35%;    
+}
+.note_E3b{
+  background-color: #e3d002;
+  background-color: #cccc00;
+  border:1px solid #000;
+  border-radius:10%;  
+  color:#ffffff;
+  display: inline-block;
+  height:10%;  
+  margin-left: 55%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 65%;
+  width:35%;    
+}
 .note_F4{
   background-color: #12d10f;
   border:1px solid #000;
-  border-radius:45%;
+  border-radius:10%;
   color:#ffffff;
   display: inline-block;
   height:10%;
@@ -174,7 +271,7 @@ td:nth-child(8) {
 .note_G5{
   background-color:#0bb5af;
   border:1px solid #000;
-  border-radius:45%;
+  border-radius:10%;
   color:#ffffff;
   display: inline-block;
   height:10%;
@@ -189,7 +286,7 @@ td:nth-child(8) {
 .note_A6{
   background-color: #0b30b5;
   border:1px solid #000;
-  border-radius:45%;
+  border-radius:10%;
   color:#ffffff;
   display: inline-block;
   height:10%;
@@ -204,7 +301,7 @@ td:nth-child(8) {
 .note_B7{
   background-color:#b50bb2;  
   border:1px solid #000;    
-  border-radius:45%;
+  border-radius:10%;
   color:#ffffff;  
   display: inline-block;
   height:10%;
@@ -219,7 +316,7 @@ td:nth-child(8) {
 .note_C8{
   background-color: #b71c1c;
   border:1px solid #000;  
-  border-radius:40%;
+  border-radius:10%;
   color:#ffffff;    
   display: inline-block;  
   margin-left: 10%;
@@ -235,7 +332,7 @@ td:nth-child(8) {
 .note_rest{
   background-color:lightgray;
   border:1px solid lightgray;
-  border-radius:45%;
+  border-radius:10%;
   color:gray;    
   display:block;
   height:10%;      
@@ -289,11 +386,12 @@ def print_bar(bar):
     for note in bar:
         cell_header()
         if type(note) == str:
-            print("<span class =\"note_"+note+"\">"+note+"</span>")
+            
+            print("<span class =\"note_"+note+"\">"+note.translate(lc_stripper)+"</span>")
 
         else:
             for item in note:
-                print("<span class = \"note_"+item+"\">"+item+"</span>")
+                print("<span class = \"note_"+item+"\">"+item.translate(lc_stripper)+"</span>")
 
         cell_footer()
 
