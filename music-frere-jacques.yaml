@@ -1,0 +1,46 @@
+---
+  
+title: Frere Jacques
+
+bars:
+  -
+    - C1
+    - D2
+    - E3
+    - C1
+  -
+    - C1
+    - D2
+    - E3
+    - C1    
+  -
+    - E3
+    - F4
+    - G5
+    - rest
+  -
+    - E3
+    - F4
+    - G5
+    - rest    
+  -
+    - [G5a, A6b]
+    - [G5a, F4b]
+    - E3
+    - C1
+  -
+    - [G5a, A6b]
+    - [G5a, F4b]
+    - E3
+    - C1  
+  -
+    - C1
+    - G5
+    - C1
+    - rest
+  -
+    - C1
+    - G5
+    - C1
+    - rest
+  

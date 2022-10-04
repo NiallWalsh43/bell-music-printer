@@ -1,26 +1,8 @@
+#!/usr/bin/python3
 import string
+import sys
 import yaml
 
-lc_stripper = str.maketrans('', '', string.ascii_lowercase)
-
-with open("demo.yaml", 'r') as stream:
-    music = yaml.safe_load(stream)
-
-# border-spacing:0 50px;
-music0 = {
-
-    "title": "Twinkle Twinkle Little Star",
-
-
-    "bars": [
-      ["C1", "C1", "G5", "G5"], ["A6", "A6", "G5", "rest"],
-      ["F4", "F4", "E3", "E3"],  ["D2", "D2", "C1", "rest"],
-      ["G5", "G5", "F4", "F4"], ["E3", "E3", "D2", "rest"],
-      ["G5", "G5", "F4", "F4"], ["E3", "E3", "D2", "rest"],
-      ["C1", "C1", "G5", "G5"], ["A6", "A6", "G5", "rest"],
-      ["F4", "F4", "E3", "E3"], ["D2", "D2", "C1", "C8"],
-    ]
-}
 
 
 def print_page_header():
@@ -30,7 +12,7 @@ def print_page_header():
 <style>
 
 
-h2 {
+h4 {
   text-align: center;
 }
 
@@ -115,8 +97,8 @@ td:nth-child(8) {
   
 }
 
-.note_C1{
-  background-color:#b71c1c;
+.note_C1{  
+  background-color: #fc0505;
   border:1px solid #000;
   border-radius:10%;    
   color:#ffffff;
@@ -131,7 +113,7 @@ td:nth-child(8) {
 }
 
 .note_C1a{
-  background-color:#b71c1c;
+  background-color: #fc0505;
   border:1px solid #000;
   border-radius:10%;    
   color:#ffffff;
@@ -145,8 +127,8 @@ td:nth-child(8) {
   width:35%;      
 }
 
-.note_C1b{
-  background-color:#b71c1c;
+.note_C1b{  
+  background-color: #fc0505;
   border:1px solid #000;
   border-radius:10%;    
   color:#ffffff;
@@ -185,7 +167,7 @@ td:nth-child(8) {
   color:#ffffff;
   display: inline-block;
   height:10%;  
-  margin-left: 8%;
+  margin-left: 10%;
   padding-bottom: 1%;
   position: absolute;
   text-align: center;
@@ -267,9 +249,37 @@ td:nth-child(8) {
   top: 55%;  
   width:80%;
 }
+.note_F4a{
+  background-color: #12d10f;
+  border:1px solid #000;
+  border-radius:10%;
+  color:#ffffff;
+  display: inline-block;
+  height:10%;
+  margin-left: 10%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 55%;  
+  width:35%;
+}
+.note_F4b{
+  background-color: #12d10f;
+  border:1px solid #000;
+  border-radius:10%;
+  color:#ffffff;
+  display: inline-block;
+  height:10%;
+  margin-left: 55%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 55%;  
+  width:35%;
+}
 
 .note_G5{
-  background-color:#0bb5af;
+  background-color:#9df8fc;
   border:1px solid #000;
   border-radius:10%;
   color:#ffffff;
@@ -281,6 +291,36 @@ td:nth-child(8) {
   top: 45%;   
   width:80%;
   position: absolute;
+}
+
+.note_G5a{
+  background-color:#0bb5af;
+  border:1px solid #000;
+  border-radius:10%;
+  color:#ffffff;
+  display: inline-block;
+  height:10%;
+  margin-left: 10%;
+  padding-bottom: 1%;
+  text-align: center;
+  top: 45%;   
+  width:35%;
+  position: absolute;
+}
+
+.note_G5b{
+  background-color:#0bb5af;
+  border:1px solid #000;
+  border-radius:10%;
+  color:#ffffff;
+  display: inline-block;
+  height:10%;
+  margin-left: 55%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 45%;   
+  width:35%;  
 }
 
 .note_A6{
@@ -298,8 +338,38 @@ td:nth-child(8) {
   width:80%;
 }
 
+.note_A6a{
+  background-color: #0b30b5;
+  border:1px solid #000;
+  border-radius:10%;
+  color:#ffffff;
+  display: inline-block;
+  height:10%;
+  margin-left: 10%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 35%;       
+  width:35%;
+}
+
+.note_A6b{
+  background-color: #0b30b5;
+  border:1px solid #000;
+  border-radius:10%;
+  color:#ffffff;
+  display: inline-block;
+  height:10%;
+  margin-left: 55%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 35%;       
+  width:35%;
+}
+
 .note_B7{
-  background-color:#b50bb2;  
+  background-color:#c284f5;  
   border:1px solid #000;    
   border-radius:10%;
   color:#ffffff;  
@@ -312,9 +382,38 @@ td:nth-child(8) {
   top: 25%;   
   width:80%;         
  }
-  
+
+.note_B7a{
+  background-color:#8d05fc;  
+  border:1px solid #000;    
+  border-radius:10%;
+  color:#ffffff;  
+  display: inline-block;
+  height:10%;
+  margin-left: 10%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 25%;   
+  width:35%;         
+ }  
+
+ .note_B7b{
+  background-color:#b50bb2;  
+  border:1px solid #000;    
+  border-radius:10%;
+  color:#ffffff;  
+  display: inline-block;
+  height:10%;
+  margin-left: 55%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;
+  top: 25%;   
+  width:35%;         
+ }  
 .note_C8{
-  background-color: #b71c1c;
+  background-color: #fc0505;
   border:1px solid #000;  
   border-radius:10%;
   color:#ffffff;    
@@ -325,10 +424,37 @@ td:nth-child(8) {
   position: absolute;
   text-align: center;  
   top: 15%;   
-  width:80%;    
-  
+  width:80%;      
 }
 
+.note_C8a{  
+  background-color: #fc0505;
+  border:1px solid #000;  
+  border-radius:10%;
+  color:#ffffff;    
+  display: inline-block;  
+  margin-left: 10%;
+  height:10%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;  
+  top: 15%;   
+  width:35%;      
+}
+.note_C8b{  
+  background-color: #fc0505;
+  border:1px solid #000;  
+  border-radius:10%;
+  color:#ffffff;    
+  display: inline-block;  
+  margin-left: 55%;
+  height:10%;
+  padding-bottom: 1%;
+  position: absolute;
+  text-align: center;  
+  top: 15%;   
+  width:35%;      
+}
 .note_rest{
   background-color:lightgray;
   border:1px solid lightgray;
@@ -354,8 +480,8 @@ def print_page_footer():
     print("</body>\n </html> ")
 
 
-def print_title(title):
-    print(f"<h2>{title} </h2>")
+def print_table_title(title):
+    print(f"<h4>{title} </h4>")
 
 
 def cell_header():
@@ -396,11 +522,12 @@ def print_bar(bar):
         cell_footer()
 
 
-def print_table(bars):
+def print_table(music, offset, n):
     bar_num = 0
+    print_table_title(f"{music['title']} (page {(offset // n)+1})")
     table_header()
 
-    for bar in bars:
+    for bar in music["bars"][offset:offset+n]:
         if bar_num % 2 == 0:
             row_header()
         print_bar(bar)
@@ -410,9 +537,24 @@ def print_table(bars):
 
     table_footer()
 
+def print_page_of_music(music, page_size, page_num):
+    print_table(music, (page_num - 1) * page_size, page_size)
+  
+lc_stripper = str.maketrans('', '', string.ascii_lowercase)
 
-print_page_header()
-print_title(music["title"])
-print_table(music["bars"])
+with open("music-frere-jacques.poly.yaml", 'r') as stream:
+    music = yaml.safe_load(stream)    
+    page_size = 4
+    num_pages = (len(music["bars"]) + page_size - 1 ) // page_size
+    print(f"num_pages={num_pages}")
 
-print_page_footer()
+    for page_num in range(1, num_pages+1):
+        
+
+        with open(f"page-{page_num}.html", "w") as sys.stdout:
+            print("page_header")
+            print_page_header()
+            print_page_of_music(music, page_size, page_num)
+            print_page_footer()
+
+

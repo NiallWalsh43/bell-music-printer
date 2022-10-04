@@ -2,9 +2,9 @@
 
 title: Twinkle Twinkle Little Star
 
-bars:  
+bars:    
   -
-    - [C1a, C1b]
+    - C1
     - C1
     - G5
     - G5
@@ -20,7 +20,7 @@ bars:
     - E3
   -
     - D2
-    - [D2a, D2b]
+    - D2
     - C1
     - rest
   -
@@ -29,7 +29,7 @@ bars:
     - F4
     - F4
   -
-    - [E3a, E3b]
+    - E3
     - E3
     - D2
     - rest
