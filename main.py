@@ -3,8 +3,31 @@ import math
 import string
 import sys
 import yaml
+import argparse
 
+import argparse
 
+import os
+import sys
+
+# Create the parser
+my_parser = argparse.ArgumentParser(description='List the content of a folder')
+
+# Add the arguments
+my_parser.add_argument('Path',
+                       metavar='path',
+                       type=str,
+                       help='the path to list')
+
+# Execute the parse_args() method
+args = my_parser.parse_args()
+
+input_path = args.Path
+
+if not os.path.isfile(input_path):
+    print(f'The path specified ({input_path}) does not exist')
+    sys.exit()
+print(f"Load music file {input_path}")
 
 def print_page_header():
     print("""
@@ -535,7 +558,8 @@ def print_page_of_music(music, page_size, page_num):
 lc_stripper = str.maketrans('', '', string.ascii_lowercase)
 
 #with open("music-frere-jacques.poly.yaml", 'r') as stream:
-with open("music-happy-birthday.poly.yaml", 'r') as stream:
+#with open("music-happy-birthday.poly.yaml", 'r') as stream:
+with open(input_path, 'r') as stream:
     music = yaml.safe_load(stream)    
     page_size = 4
     beats_per_bar =  len(music["bars"][0])
