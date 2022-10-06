@@ -1,0 +1,49 @@
+---
+  
+    title: Happy Birthday (Poly)
+    
+    bars:
+      -
+        - rest
+        - rest             
+        - [G5a, G5b, E3a, E3b]        
+      -
+        - [A6, C1]
+        - [G5, E3]        
+        - [C8, E3]        
+      -
+        - [B7, G5, F4]
+        - D2
+        - [G5a, G5b, D2a,  D2b]        
+      -  
+        - [A6, F4]      
+        - [G5, D2]      
+        - D2
+      -  
+        - [C8, E3]              
+        - [C8, G5]            
+        - [G5a, G5b, E3a, E3b]        
+      -  
+        - G5     
+        - [E3, C1]
+        - C1
+      -        
+        - [B7, G5, F4]
+        - [A6, F4] 
+        - [F4a, D2a, F4b, D2b]  
+      -  
+        - [E3, C1]            
+        - C1
+        - D2        
+      -
+        - [C1a, E3b] 
+        - [G5a, C8b, G5b, E3b, C1b]
+        - [C1, E3, C8]
+      -
+        - rest
+        - rest
+        - rest  
+        
+        
+            
+    

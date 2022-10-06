@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import math
 import string
 import sys
 import yaml
@@ -7,6 +8,7 @@ import yaml
 
 def print_page_header():
     print("""
+    <!DOCTYPE html>
     <html>
     <head>
 <style>
@@ -24,15 +26,22 @@ table {
   align: center;
   margin-left: auto;
   margin-right: auto;
-  width:1024px;
-  grid-row-gap: 20px;
-  row-gap: 20px;
+  width:1024px;  
 }
 
-tr {
-  grid-row-gap: 20px;
-  row-gap: 20px;
+table.figure {
+  align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width:1024px;  
+  font-style: italic;
 }
+
+spacer_div {
+  line-height: 40px;
+  border: none;
+}
+
 td {
   background-image: linear-gradient(45deg, lightblue, white);
   
@@ -43,46 +52,15 @@ td {
   
 }
 
-td:nth-child(1) {
-  border-left: solid 2px black;
-  border-bottom: solid 2px black;
-  border-top: solid 2px black;
-}
-td:nth-child(2) {  
-  border-bottom: solid 2px black;
-  border-top: solid 2px black;
+.td_no_bg {
+  background-image: none;
+  align: left;
+  width: 50%;
 }
 
-td:nth-child(3) {  
-  border-bottom: solid 2px black;
-  border-top: solid 2px black;
-}
 
-td:nth-child(4) {  
-  border-bottom: solid 2px black;
-  border-top: solid 2px black;
-  border-right: solid 2px black;
-}
-
-td:nth-child(5) {
-  border-left: solid 2px black;
-  border-bottom: solid 2px black;
-  border-top: solid 2px black;
-}
-td:nth-child(6) {  
-  border-bottom: solid 2px black;
-  border-top: solid 2px black;
-}
-
-td:nth-child(7) {  
-  border-bottom: solid 2px black;
-  border-top: solid 2px black;
-}
-
-td:nth-child(8) {  
-  border-bottom: solid 2px black;
-  border-top: solid 2px black;
-  border-right: solid 2px black;
+div.line_separator {  
+  height: 50px;
 }
 
 .container{
@@ -91,17 +69,14 @@ td:nth-child(8) {
   position: relative;
   margin: none;
   padding:none;
-  
-  
-  
-  
+      
 }
 
 .note_C1{  
   background-color: #fc0505;
   border:1px solid #000;
   border-radius:10%;    
-  color:#ffffff;
+  color:#000;
   display: inline-block;  
   height:10%;  
   margin-left: 10%;
@@ -116,7 +91,7 @@ td:nth-child(8) {
   background-color: #fc0505;
   border:1px solid #000;
   border-radius:10%;    
-  color:#ffffff;
+  color:#000;
   display: inline-block;  
   height:10%;  
   margin-left: 10%;
@@ -131,7 +106,7 @@ td:nth-child(8) {
   background-color: #fc0505;
   border:1px solid #000;
   border-radius:10%;    
-  color:#ffffff;
+  color:#000;
   display: inline-block;  
   height:10%;  
   margin-left: 55%;
@@ -147,8 +122,8 @@ td:nth-child(8) {
   background-color:#ff8b38;
   background-color:#e39402;
   border:1px solid #000;
-  border-radius:10%;
-  color:#ffffff;
+  border-radius:10%;  
+  color:#000;
   display: inline-block;
   height:10%;  
   margin-left: 8%;
@@ -163,8 +138,8 @@ td:nth-child(8) {
   background-color:#ff8b38;
   background-color:#e39402;
   border:1px solid #000;
-  border-radius:10%;
-  color:#ffffff;
+  border-radius:10%;  
+  color:#000;
   display: inline-block;
   height:10%;  
   margin-left: 10%;
@@ -178,8 +153,8 @@ td:nth-child(8) {
   background-color:#ff8b38;
   background-color:#e39402;
   border:1px solid #000;
-  border-radius:10%;
-  color:#ffffff;
+  border-radius:10%;  
+  color:#000;
   display: inline-block;
   height:10%;  
   margin-left: 55%;
@@ -193,8 +168,8 @@ td:nth-child(8) {
   background-color: #e3d002;
   background-color: #cccc00;
   border:1px solid #000;
-  border-radius:10%;  
-  color:#ffffff;
+  border-radius:10%;    
+  color:#000;
   display: inline-block;
   height:10%;  
   margin-left: 10%;
@@ -209,8 +184,8 @@ td:nth-child(8) {
   background-color: #e3d002;
   background-color: #cccc00;
   border:1px solid #000;
-  border-radius:10%;  
-  color:#ffffff;
+  border-radius:10%;    
+  color:#000;
   display: inline-block;
   height:10%;  
   margin-left: 10%;
@@ -224,8 +199,8 @@ td:nth-child(8) {
   background-color: #e3d002;
   background-color: #cccc00;
   border:1px solid #000;
-  border-radius:10%;  
-  color:#ffffff;
+  border-radius:10%;    
+  color:#000;
   display: inline-block;
   height:10%;  
   margin-left: 55%;
@@ -238,8 +213,8 @@ td:nth-child(8) {
 .note_F4{
   background-color: #12d10f;
   border:1px solid #000;
-  border-radius:10%;
-  color:#ffffff;
+  border-radius:10%;  
+  color:#000;
   display: inline-block;
   height:10%;
   margin-left: 10%;
@@ -252,8 +227,8 @@ td:nth-child(8) {
 .note_F4a{
   background-color: #12d10f;
   border:1px solid #000;
-  border-radius:10%;
-  color:#ffffff;
+  border-radius:10%;  
+  color:#000;
   display: inline-block;
   height:10%;
   margin-left: 10%;
@@ -266,8 +241,8 @@ td:nth-child(8) {
 .note_F4b{
   background-color: #12d10f;
   border:1px solid #000;
-  border-radius:10%;
-  color:#ffffff;
+  border-radius:10%;  
+  color:#000;
   display: inline-block;
   height:10%;
   margin-left: 55%;
@@ -281,8 +256,8 @@ td:nth-child(8) {
 .note_G5{
   background-color:#9df8fc;
   border:1px solid #000;
-  border-radius:10%;
-  color:#ffffff;
+  border-radius:10%;  
+  color:#000;
   display: inline-block;
   height:10%;
   margin-left: 10%;
@@ -294,10 +269,10 @@ td:nth-child(8) {
 }
 
 .note_G5a{
-  background-color:#0bb5af;
+  background-color:#9df8fc;
   border:1px solid #000;
   border-radius:10%;
-  color:#ffffff;
+  color:#000;
   display: inline-block;
   height:10%;
   margin-left: 10%;
@@ -309,10 +284,10 @@ td:nth-child(8) {
 }
 
 .note_G5b{
-  background-color:#0bb5af;
+  background-color:#9df8fc;
   border:1px solid #000;
   border-radius:10%;
-  color:#ffffff;
+  color:#000;
   display: inline-block;
   height:10%;
   margin-left: 55%;
@@ -372,7 +347,7 @@ td:nth-child(8) {
   background-color:#c284f5;  
   border:1px solid #000;    
   border-radius:10%;
-  color:#ffffff;  
+  color:#000;
   display: inline-block;
   height:10%;
   margin-left: 10%;
@@ -387,7 +362,7 @@ td:nth-child(8) {
   background-color:#8d05fc;  
   border:1px solid #000;    
   border-radius:10%;
-  color:#ffffff;  
+  color:#000;
   display: inline-block;
   height:10%;
   margin-left: 10%;
@@ -402,7 +377,7 @@ td:nth-child(8) {
   background-color:#b50bb2;  
   border:1px solid #000;    
   border-radius:10%;
-  color:#ffffff;  
+  color:#000;
   display: inline-block;
   height:10%;
   margin-left: 55%;
@@ -416,7 +391,7 @@ td:nth-child(8) {
   background-color: #fc0505;
   border:1px solid #000;  
   border-radius:10%;
-  color:#ffffff;    
+  color:#000;
   display: inline-block;  
   margin-left: 10%;
   height:10%;
@@ -431,7 +406,7 @@ td:nth-child(8) {
   background-color: #fc0505;
   border:1px solid #000;  
   border-radius:10%;
-  color:#ffffff;    
+  color:#000;
   display: inline-block;  
   margin-left: 10%;
   height:10%;
@@ -445,7 +420,7 @@ td:nth-child(8) {
   background-color: #fc0505;
   border:1px solid #000;  
   border-radius:10%;
-  color:#ffffff;    
+  color:#000;
   display: inline-block;  
   margin-left: 55%;
   height:10%;
@@ -455,7 +430,7 @@ td:nth-child(8) {
   top: 15%;   
   width:35%;      
 }
-.note_rest{
+.note_REST{
   background-color:lightgray;
   border:1px solid lightgray;
   border-radius:10%;
@@ -475,6 +450,10 @@ td:nth-child(8) {
     <body>
     """)
 
+line_num = 1
+num_lines = 0
+beats_per_bar = 0
+bar_num = 0
 
 def print_page_footer():
     print("</body>\n </html> ")
@@ -491,13 +470,13 @@ def cell_header():
 def cell_footer():
     print("</td>")
 
-
 def table_header():
     print("<table>")
 
 
-def table_footer():
-    print("</table>")
+def table_footer(bar_num):
+    print(f"</table>")
+    print(f"<table class=\"figure\"><tr><td class=\"td_no_bg\">Bar: {bar_num}</td><td class=\"td_no_bg\">Bar: {bar_num+1}</td></tr></table>")
 
 
 def row_header():
@@ -523,38 +502,52 @@ def print_bar(bar):
 
 
 def print_table(music, offset, n):
-    bar_num = 0
-    print_table_title(f"{music['title']} (page {(offset // n)+1})")
-    table_header()
-
-    for bar in music["bars"][offset:offset+n]:
-        if bar_num % 2 == 0:
+    global line_num
+    global bar_num      
+    
+    table_header()    
+    for bar in music["bars"][offset:offset+n]:        
+        if bar_num % 2 == 0:            
             row_header()
         print_bar(bar)
         if bar_num % 2 != 0:
-            row_footer()
-        bar_num += 1
-
-    table_footer()
+            row_footer()            
+        bar_num += 1       
+       
+    table_footer(bar_num-1)
 
 def print_page_of_music(music, page_size, page_num):
-    print_table(music, (page_num - 1) * page_size, page_size)
+    global line_num
+    global num_lines
+    global beats_per_bar
+    bar_offset = (page_num - 1) * page_size
+    
+    print_table_title(f"{music['title']} (page {page_num})")
+    print_table(music, bar_offset, page_size//2)    
+    line_num += 1
+
+    if line_num < num_lines:    
+      print('<div class="line_separator"></div>')
+      print_table(music, bar_offset + page_size//2, page_size//2)        
+      line_num += 1
   
+
 lc_stripper = str.maketrans('', '', string.ascii_lowercase)
 
-with open("music-frere-jacques.poly.yaml", 'r') as stream:
+#with open("music-frere-jacques.poly.yaml", 'r') as stream:
+with open("music-happy-birthday.poly.yaml", 'r') as stream:
     music = yaml.safe_load(stream)    
     page_size = 4
-    num_pages = (len(music["bars"]) + page_size - 1 ) // page_size
-    print(f"num_pages={num_pages}")
+    beats_per_bar =  len(music["bars"][0])
+    num_pages = math.ceil((len(music["bars"]) + page_size - 1 ) / page_size)
+    num_lines = math.ceil(len(music["bars"]) /2 )
+    
 
-    for page_num in range(1, num_pages+1):
-        
-
-        with open(f"page-{page_num}.html", "w") as sys.stdout:
-            print("page_header")
+    for page_num in range(1, num_pages+1):        
+        with open(f"page-{page_num}.html", "w") as sys.stdout:            
             print_page_header()
             print_page_of_music(music, page_size, page_num)
             print_page_footer()
+            
 
 
