@@ -4,14 +4,22 @@ import string
 import sys
 import yaml
 import argparse
-
+import os
+import time
+import datetime
 import argparse
+import pyautogui
+import webbrowser
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 import os
 import sys
 
 # Create the parser
 my_parser = argparse.ArgumentParser(description='List the content of a folder')
+cur_dir = os.getcwd()
 
 # Add the arguments
 my_parser.add_argument('Path',
@@ -477,52 +485,102 @@ line_num = 1
 num_lines = 0
 beats_per_bar = 0
 bar_num = 0
+html_mode = True
+
+
+def print_html(some_text):
+    if html_mode:
+        print(some_text)
+
+
 
 def print_page_footer():
-    print("</body>\n </html> ")
+    print_html("</body>\n </html> ")
 
 
 def print_table_title(title):
-    print(f"<h4>{title} </h4>")
+    print_html(f"<h4>{title} </h4>")
 
 
 def cell_header():
-    print("<td class=\"container\">")
+    print_html("<td class=\"container\">")
 
 
 def cell_footer():
-    print("</td>")
+    print_html("</td>")
 
 def table_header():
-    print("<table>")
+    print_html("<table>")
 
 
 def table_footer(bar_num):
-    print(f"</table>")
-    print(f"<table class=\"figure\"><tr><td class=\"td_no_bg\">Bar: {bar_num}</td><td class=\"td_no_bg\">Bar: {bar_num+1}</td></tr></table>")
+    print_html(f"</table>")
+    print_html(f"<table class=\"figure\"><tr><td class=\"td_no_bg\">Bar: {bar_num}</td><td class=\"td_no_bg\">Bar: {bar_num+1}</td></tr></table>")
 
 
 def row_header():
-    print("<tr>")
+    print_html("<tr>")
 
 
 def row_footer():
-    print("</tr>")
+    print_html("</tr>")
+
+def play_note(note):
+    global html_mode
+    if html_mode:
+        return
+
+
+    #print_html(f"playing {note}")
+    if note == "rest":
+        sys.stderr.write(f"playing (rest)\n")
+    else:
+        sys.stderr.write(f"playing {note}\n")
+
+        time.sleep(0.2)
+
+def play_chord(chord):
+    global html_mode
+    if html_mode:
+        return
+
+    sys.stderr.write(f"playing")
+    for note in chord:
+        sys.stderr.write(f" {note}")
+    sys.stderr.write(f"\n")
+
+
+def current_milli_time():
+    return round(time.time() * 1000)
+
+
 
 
 def print_bar(bar):
     for note in bar:
+        beat_start_time = current_milli_time()
+        beat_end_time = beat_start_time + 1000
+
+
+
+
+
+
         cell_header()
         if type(note) == str:
             
-            print("<span class =\"note_"+note+"\">"+note.translate(lc_stripper)+"</span>")
+            print_html("<span class =\"note_"+note+"\">"+note.translate(lc_stripper)+"</span>")
+            play_note(note=note)
 
         else:
+            play_chord(chord=note)
             for item in note:
-                print("<span class = \"note_"+item+"\">"+item.translate(lc_stripper)+"</span>")
+                print_html("<span class = \"note_"+item+"\">"+item.translate(lc_stripper)+"</span>")
 
         cell_footer()
-
+        beat_curr_time = current_milli_time()
+        if not html_mode:
+            time.sleep((beat_end_time-beat_curr_time)/1000)
 
 def print_table(music, offset, n):
     global line_num
@@ -543,17 +601,40 @@ def print_page_of_music(music, page_size, page_num):
     global line_num
     global num_lines
     global beats_per_bar
+    global browser
     bar_offset = (page_num - 1) * page_size
-    
-    print_table_title(f"{music['title']} (page {page_num})")
+
+    if print_html:
+        print_table_title(f"{music['title']} (page {page_num})")
     print_table(music, bar_offset, page_size//2)    
     line_num += 1
 
     if line_num < num_lines:    
-      print('<div class="line_separator"></div>')
+      print_html('<div class="line_separator"></div>')
       print_table(music, bar_offset + page_size//2, page_size//2)        
       line_num += 1
-  
+
+
+
+
+browser = webbrowser.get()
+
+
+#import time,webbrowser, pyautogui
+#url = f"/home/niall/PycharmProject/Music_printer/page-1.html"
+#webbrowser.open(url)
+#time.sleep(20)
+#pyautogui.hotkey('ctrl', 'w')
+#print("tab closed")
+
+
+
+
+
+
+
+
+
 
 lc_stripper = str.maketrans('', '', string.ascii_lowercase)
 
@@ -564,14 +645,37 @@ with open(input_path, 'r') as stream:
     page_size = 4
     beats_per_bar =  len(music["bars"][0])
     num_pages = math.ceil((len(music["bars"]) + page_size - 1 ) / page_size)
+    num_bars = len(music["bars"])
+    num_pages = num_bars // page_size
+    if num_bars % page_size > 0:
+        num_pages += 1
+
     num_lines = math.ceil(len(music["bars"]) /2 )
     
 
-    for page_num in range(1, num_pages+1):        
+    for page_num in range(1, num_pages+1):
+        html_mode = True
+        save_line_num = line_num
+        save_bar_num = bar_num
+        sys.stderr.write(f"print page {page_num} start\n")
+
         with open(f"page-{page_num}.html", "w") as sys.stdout:            
             print_page_header()
             print_page_of_music(music, page_size, page_num)
             print_page_footer()
-            
+        my_url = f"{cur_dir}/page-{page_num}.html"
+        sys.stderr.write(f"print page {page_num} end\n")
+        pyautogui.hotkey('ctrl', 'w')
+        browser.open(my_url, new=0)
+
+        html_mode = False
+        # print_page_header()
+        line_num = save_line_num
+        bar_num = save_bar_num
+        print_page_of_music(music, page_size, page_num)
+        # print_page_footer()
+
+    pyautogui.hotkey('ctrl', 'w')
+
 
 
